@@ -19,7 +19,7 @@
 
 - Protocols
   - What is a protocol?
-    > A set of rules governing the exchange or transmission of data.
+  - Why do we need protocols?
   - What are some common protocols used for internet communication?
   - Why so many different protocols?
 

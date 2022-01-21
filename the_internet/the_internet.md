@@ -1,6 +1,7 @@
 # The Internet
 
 - [What is the Internet?](#what-is-the-internet)
+- [Protocols](#protocols)
 
 ---
 
@@ -22,20 +23,44 @@
 
 **_Inter-network communication_**
 
-LANs limit communication to devices included in a LAN, but _Routers_ allow communication to occur between _networks_. _Routers_ 'route' network traffic to other networks.
+- LANs limit communication to devices included in a LAN, but _Routers_ allow communication to occur between _networks_. _Routers_ 'route' network traffic to other networks.
 
 **_Network of Networks_**
 
-On a basic level, the internet consists of a multitude of individual networks connected together, and in between these sub-networks is a system of routers that direct network traffic.
+- On a basic level, the internet consists of a multitude of individual networks connected together, and in between these sub-networks is a system of routers that direct network traffic.
+
+---
 
 ## Protocols
 
-- What is a protocol?
-  A **protocol** is a well-known set of rules and standards used to communicate between machines.
-- Common internet communication protocols
-- Main reasons there are so many protocols for network communication
-  - Protocols for different aspects of communication
-  - Different protocols for the same aspect of communication
+**_What is a Protocol?_**
+
+> A **protocol** is a well-known set of rules and standards used to communicate between machines.
+
+**_Why do we need Protocols?_**
+
+- The variety of electronic communication that needs to communicate these days is astounding:
+  - Devices (phone brands, phone models, tvs, computers, toasters, etc.)
+  - Connection devices (hubs, switches, routers, etc.)
+  - Server configurations
+  - Variety of software run on these components
+
+- A number of different _protocols_ are used in order to standardize different aspects of network communication over the internet. 
+  - IP, SMTP, TCP, HTTP, Ethernet, are all examples of different protocols.
+
+**_Main reasons there are so many protocols for network communication_**
+
+- **Protocols for different aspects of communication**
+  - Just like human speech, where the order of the words said matter, or the back and forth that occurs in a conversation, protocols can ensure communication across the network is understood between both parties.
+
+- **Different protocols for the same aspect of communication**
+  - Just like different scenarios require different styles of communication depending on the context(e.g. student speaking to teacher vs friends speaking in a group) within human speech, some scenarios of network communication can require different rules depending on the context.
+
+- For example:
+  - TCP and UDP would be examples of two protocols that address the transfer of messages between applications, but do so differently.
+  - TCP and HTTP would be examples of two protocols that address different aspects of communication; TCP for the transfer of messages between applications, and HTTP for the structure of those messages.
+
+---
 
 ## A Layered System
 
@@ -47,6 +72,8 @@ On a basic level, the internet consists of a multitude of individual networks co
   - Protocol Data Unit(PDU)
   - Header and Trailer
   - Data Payload
+
+---
 
 ## The Physical Network
 
@@ -65,6 +92,8 @@ On a basic level, the internet consists of a multitude of individual networks co
   - Bandwidth
   - Limitations of the physical network
 
+---
+
 ## The Link/Data Link Layer
 
 - Purpose of the link/data link layer
@@ -81,6 +110,8 @@ On a basic level, the internet consists of a multitude of individual networks co
   - MAC Addresses
     - hubs vs switches
 - A Problem of Scale
+
+---
 
 ## The Internet/Network Layer
 
@@ -99,6 +130,8 @@ On a basic level, the internet consists of a multitude of individual networks co
 - Routing and Routing Tables
 - IPv6
 - Networked Applications
+
+---
 
 ## Overview
 
