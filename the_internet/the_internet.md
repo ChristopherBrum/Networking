@@ -112,20 +112,36 @@ The difference between these models is mostly in their approach, but they are ro
 
 ## The Physical Network
 
-- Purpose of the physical layer
-- There are physical limitations to a networks capabilities and have an effect on how protocols function up at the conceptual level
-- Bits and Signals
-- Characteristics of a physical network
-  - Latency
-    - propagation delay
-    - transmission delay
-    - processing delay
-    - queuing delay
-    - last-mile latency
-    - round-trip time
-    - network hops
-  - Bandwidth
-  - Limitations of the physical network
+### Purpose of the physical layer
+
+- Underneath the layers of abstraction of network communication at it's most basic level is a 'physical' network made out of networked devices, cables and wires.
+- The laws and rules of science and the components that comprise the physical network dictate the limitations of how data is actually transported from one part of the world to another.
+- These limitations effect the protocols functioning further up at a conceptual level.
+
+### Bits and Signals
+
+- Functionality at the Physical level is primarily concerned with the transferring of _bits_(binary data).
+- To transfer bits they are converted to electrical signals, light signals, or radio waves.
+
+### Characteristics of a physical network
+
+- _Latency_ and _Bandwidth_ are the two main characteristics of **performance** in the physical layer.
+
+#### _Latency_
+
+- **Latency**(time): measure of _time_ it takes for data to get from one point in a network to another.
+- **Bandwidth**(amount): _amount_ of time that data can be sent in a particular unit of time.
+
+#### _Bandwidth_
+
+- Bandwidth across a network will vary.
+- The core network will have more bandwidth than the part of the network infrastructure that connects to your home.
+- The bandwidth you receive is only as good as the weakest point within the system you're connected to. This is known as the _bandwidth bottleneck_.
+
+#### _Limitations of the physical network_
+
+- As developers we don't have control over elements of the physical network.
+- Improving performance of applications we build will have to come from higher-level protocols.
 
 ---
 
@@ -165,6 +181,18 @@ The difference between these models is mostly in their approach, but they are ro
 - Routing and Routing Tables
 - IPv6
 - Networked Applications
+
+---
+
+## Concepts
+
+- Different sets of rules, or protocols, address different aspects of communication.
+- It can be useful to group these protocols together in terms of the particular aspect of communication that they address.
+- We can think of those protocol groups as functioning within layers of an overall system of communication.
+
+- Protocols act as systems of rules for network communication.
+- Groups of protocols work in a layered system. Protocols at one layer provide services to the layer above.
+- Data is encapsulated into a Protocol Data Unit, creating separation between protocols operating at different layers.
 
 ---
 
