@@ -1,11 +1,32 @@
 # The Internet
 
-## What is the Internet?
+- [What is the Internet?](#what-is-the-internet)
 
-- Network
-- LAN/WLAN
-- Inter-network communication
-- Network of Networks
+---
+
+- We, as software developers, must understand how _network communication_ functions because that is at the foundation of how _network applications_ function.
+- _The internet_ is a network of networks comprised of a physical infrastructure(switches, routers, cables, servers, etc.) that connects devices all across the world, and the protocols that allow these devices to communicate/share data with one another.
+- The _Internet Protocol(IP)_ is a key part of the functionality odf the internet.
+
+## What is the Internet
+
+**_Network_**
+
+- In its simplest form a network is two or more devices connected in a way that allows them to communicate/share data with one another. (e.g. two computers connected using a LAN cable and configuring network settings in a way that they form a network.)
+
+**_LAN/WLAN_**
+
+- A _Local Area Network(LAN)_ is most common computer environments(e.g. at an office, or at school). Is comprised of two or more computers or other devices connected by a bridging device(i.e. hub or switch) with network cables.
+- A _Wireless Local Area Network(WLAN)_ is the same as above but connected using a wireless hub or switch rather than plugged in with a cable.
+- **The scope of communication is limited to the devices connected via cables or wireless**, hence the _local_ in the title.
+
+**_Inter-network communication_**
+
+LANs limit communication to devices included in a LAN, but _Routers_ allow communication to occur between _networks_. _Routers_ 'route' network traffic to other networks.
+
+**_Network of Networks_**
+
+On a basic level, the internet consists of a multitude of individual networks connected together, and in between these sub-networks is a system of routers that direct network traffic.
 
 ## Protocols
 
@@ -88,7 +109,7 @@
 - Different network protocols are concerned with different aspects of network communication and can be thought of as the different layers of the network.
 - The different network layers pass data by _encapsulating_ it at each step in the layering system through the use of _Protocol Data Units(PDUs)_.
 - The _PDU_ of a protocol at one layer, becomes the _data payload_ of the PDU of a protocol at a lower layer.
-- _Protocol data units:_ the encapsulation of data at each layer of network communication(frames, packets, etc.)
+- _Protocol data units:_ the encapsulation of data at each layer of network communication(ethernet frame, IP packets, TCP segments, etc.)
 - _Data payload_: the piece of data to be encapsulated from the layer above in the protocol hierarchy.
 - _Latency_ is a measure of delay that indicates the time it takes for data to travel from one point to another point.
 - _Bandwidth_: a measure of capacity. It indicates the amount of data that can be transmitted in a set period of time.
