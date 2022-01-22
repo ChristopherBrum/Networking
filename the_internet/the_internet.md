@@ -138,7 +138,7 @@ The difference between these models is mostly in their approach, but they are ro
 - The core network will have more bandwidth than the part of the network infrastructure that connects to your home.
 - The bandwidth you receive is only as good as the weakest point within the system you're connected to. This is known as the _bandwidth bottleneck_.
 
-#### _Limitations of the physical network_
+### _Limitations of the physical network_
 
 - As developers we don't have control over elements of the physical network.
 - Improving performance of applications we build will have to come from higher-level protocols.
@@ -197,7 +197,7 @@ A switch will use the destination address to send the frame _only_ to the intend
 
 ### A Problem of Scale
 
-- While the scenario above works fine for local networks, there is a problem of _scale_ when it comes to larger networks like the internet, prim arily because:
+- While the scenario above works fine for local networks, there is a problem of _scale_ when it comes to larger networks like the internet, primarily because:
   - They are physical rather than logical. Each MAC Address is tied (burned in) to a specific physical device
   - They are flat rather than hierarchical. The entire address is a single sequence of values and can't be broken down into sub-divisions.
 
@@ -205,21 +205,56 @@ A switch will use the destination address to send the frame _only_ to the intend
 
 ## The Internet/Network Layer
 
-- Purpose of the Internet/Network Layer
-  - IPv4 and IPv6
-- Data Packets
-  - version
-  - ID, flags, fragment offset
-  - TTL
-  - protocol
-  - checksum
-  - source address
-  - destination address
-- IP Addresses IPv4
-  - network address & broadcast address
-- Routing and Routing Tables
-- IPv6
-- Networked Applications
+### Purpose of the Internet/Network Layer
+
+- Primary function of the Internet/Network layer is to facilitate communication between hosts(computers, ect.) on different networks.
+- The **Internet Protocol**(IP) is the predominant protocol for this layer and there are two versions in use: IPv4 and IPv6.
+- The primary features of IPv4 and IPv6 are:
+  - Routing using IP addresses.
+  - Encapsulation into _packets_.
+
+### Data Packets
+
+- The PDU for the IP protocol is a _packet_, that consists of a Header and a Data Payload.
+- The Data Payload of an IP Packet is the encapsulated data from the layer above(the Transport Layer).
+
+- A glance at the Header fields of an IP Packet:
+  - **Version**: the version of IP (IPv4)
+  - **ID, flags, fragment offset**: related to fragmentation, if the PDU from layer above is too big, can be broken into fragments and then reassembled.
+  - **TTL**: time to love value
+  - **Protocol**: indicates protocol(TCP, UDP)
+  - **Checksum**: this is an error checking value generated via an algorithm
+  - **Source address**: 32-bit IP address of the source (sender
+  - **Destination address**: 32-bit IP address of the destination (intended recipient)
+
+### IP Addresses IPv4
+
+- IP addresses are not tied to a specific device and can be assigned as required when devices join a network.
+- The IP address assigned must fall within a range of IP devices tied to the network that the device is connected to.
+- The range is set by a network hierarchy, where an overall network is split into logical sub-networks, each being defined by the range of IP addresses available to it.
+- IPv4 addresses are 32 bits in length and are divided into four sections of eight bits each, each converted to a range of numbers from `0-255`. For instance, `110.54.203.175`.
+
+#### Network Address & Broadcast Address
+
+- Each network defines the IP at the start of its network range as the _Network Address_ and the end of its range as the _Broadcast Network_.
+- When a router is looking for an IP address it uses the Network Address of a specific network to identify the segment of IP addresses within the network. This means if the router needs to send a packet to any address within that range it only needs to keep a record of the router that is associated with that range of addresses.
+- This creates a hierarchal structure and means that routers don't need to keep track of every device within an addressable range.
+
+- This splitting of a network into parts is called _sub-netting_.
+
+### Routing and Routing Tables
+
+- Routers on the network store a local routing table.
+- When a router receives an IP packet it looks through the list of addresses on the routing table which represent a range of IP addresses within a particular sub-network. It determines where in the network hierarchy the matching address is and then chooses the best route for the packet to travel.
+
+### IPv6
+
+- The number of addresses available with IPv4 is only ~4.3 billion, so the IETF are developing a new version of the Internet Protocol called IPv6 which will make 340 undecillion (340 billion billion billion billion) new addresses available.
+
+### Networked Applications
+
+- The Ethernet Protocol allows for communication between devices on the same local network, the Internet Protocol allows for communication on any networked devices in the world.
+- Being able to transport data from one device to the other isn't sufficient to ensure that a specific application on the client can access the correct service on the server.
 
 ---
 
