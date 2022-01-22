@@ -147,20 +147,59 @@ The difference between these models is mostly in their approach, but they are ro
 
 ## The Link/Data Link Layer
 
-- Purpose of the link/data link layer
-- Ethernet protocol
-  - Ethernet Frames
-    - preamble and Start of Frame Delimiter(SFD/SOF)
-    - source and destination MAC address
-    - length
-    - DSAP, SSAP, Control
-    - data payload
-    - frame check sequence
-  - Interframe Gap
-  - Difference between ethernet standards
-  - MAC Addresses
-    - hubs vs switches
-- A Problem of Scale
+### Purpose of the link/data link layer
+
+- Protocols at the Link/Data link layer are primarily concerned with the identification of devices on the physical network and moving data over the physical network between devices that comprise it(like computers, switches, routers, etc.).
+- Its the interface between the physical network and the more logical layers above.
+
+### Ethernet protocol
+
+- The **Ethernet Protocol** is most commonly used at this layer, and has two main aspects we will concentrate on; _framing_ and _addressing_.
+
+#### _Ethernet Frames_
+
+- Ethernet frames are a PDU and encapsulate the data from the Internet/Network layer above.
+- The Link/Data Link layer is the lowest layer that encapsulation takes place, from here data is sent to the physical layer as a stream of bits in some form without any logical structure.
+- An Ethernet Frame adds logical structure to this binary data.
+- The data within the frame is still in the form of bits, but the structure of the frame defines which bits are the payload, and which bits are metadata to process the transporting of the frame.
+
+Ethernet compliant network devices can identify the different parts of a frame because the different 'fields' have specified lengths.
+
+- **Preamble and Start of Frame Delimiter(SFD/SOF)**: (7 bytes) notifies receiving device to expect frame data and identifies start point of that data.
+- **Source and destination MAC address**: (6 bytes) contains the sending and receiving addresses of the data.
+- **Length**: (2 bytes) indicates size of payload.
+- **DSAP, SSAP, Control**: (1 byte) identifies the Network Protocol.
+- **Data payload**: (42-1497 bytes) contains the PDU from layer above.
+- **Frame check sequence**: (4 bytes) device that created frame makes a checksum, calculated in some way, then the receiving device creates a checksum and calculates, then compare to see fi they're the same. Drop the frame if they're different.
+
+##### _Interframe Gap_
+
+- Ethernet protocol specifies a brief gap to the receiving device between each transmission which prepares the device to receive the next frame.
+
+##### _Difference between ethernet standards_
+
+- The differences between different Ethernet standards should not matter much.
+- Just focus on...
+  - ...the data payload being used as an encapsulation mechanism for the layer above, and...
+  - ...the MAC address fields being used to direct the frame between network devices.
+
+##### _MAC Addresses_
+
+- A unique _MAC address_ is assigned to every network-enabled device when manufactured.
+- Because this is linked to the specific physical device it is sometimes referred to as the _physical address_ or the _burned-in address_.
+- MAC Addresses are formatted as a sequence of six two-digit hexadecimal numbers(`00:40:96:9d:68:0a`) with different ranges of addresses being assigned to different network hardware manufacturers.
+
+In an environment thats using a hub, when a device wants to send frame to a specific MAC address, it sends the frame to the hub and the hub then sends that frame to every device connected to it. The receiving devices check to see if the MAC address is correct, and will return the frame is not.
+
+This is highly inefficient and why most places no longer use hubs and instead use switches.
+
+A switch will use the destination address to send the frame _only_ to the intended device. The switch directs the frames to the correct device by keeping a record of MAC addresses connected to it, and associates each address with an ethernet port that the device is connect to the switch through.
+
+### A Problem of Scale
+
+- While the scenario above works fine for local networks, there is a problem of _scale_ when it comes to larger networks like the internet, prim arily because:
+  - They are physical rather than logical. Each MAC Address is tied (burned in) to a specific physical device
+  - They are flat rather than hierarchical. The entire address is a single sequence of values and can't be broken down into sub-divisions.
 
 ---
 
@@ -193,6 +232,9 @@ The difference between these models is mostly in their approach, but they are ro
 - Protocols act as systems of rules for network communication.
 - Groups of protocols work in a layered system. Protocols at one layer provide services to the layer above.
 - Data is encapsulated into a Protocol Data Unit, creating separation between protocols operating at different layers.
+
+- A network at the physical level is many devices connected by cables, transmitting binary data in the form of electrical signals, light, or radio waves.
+- Simply having these devices being physically connected to each other isn't sufficient for them to communicate.
 
 ---
 
