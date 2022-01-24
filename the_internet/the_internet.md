@@ -1,21 +1,62 @@
 # The Internet
 
 - [What is the Internet?](#what-is-the-internet)
+  - [Network](#network)
+  - [LAN/WLAN](#lan-and-wlan)
+  - [Inter-network communication](#inter-network-communication)
+  - [Network of Networks](#network-of-networks)
 - [Protocols](#protocols)
+  - [What is a Protocol?](#what-is-a-protocol)
+  - [Why do we need Protocols?](#why-do-we-need-protocols)
+  - [Main reasons there are so many protocols for network communication](#main-reasons-there-are-so-many-protocols-for-network-communication)
+    - [Protocols for different aspects of communication](#protocols-for-different-aspects-of-communication)
+    - [Different protocols for the same aspect of communication](#different-protocols-for-the-same-aspect-of-communication)
+- [A Layered System](#a-layered-system)
+  - [Why layering systems are beneficial](#why-layering-systems-are-beneficial)
+  - [Network Communication Models](#network-communication-models)
+    - [Data Encapsulation in terms of network model protocol layers](#data-encapsulation-in-terms-of-network-model-protocol-layers)
+      - [Protocol Data Unit(PDU)](#protocol-data-unit)
+      - [Header and Trailer](#header-and-trailer)
+      - [Data Payload](#data-payload)
+- [The Physical Network](#data-payload)
+  - [Purpose of the physical layer](#purpose-of-the-physical-layer)
+  - [Bits and Signals](#bits-and-signals)
+  - [Characteristics of a physical network](#characteristics-of-a-physical-network)
+    - [Latency](#latency)
+    - [Bandwidth](#bandwidth)
+  - [Limitations of the physical network](#limitations-of-the-physical-network)
+- [The Link/Data Link Layer](#the-link-or-data-link-layer)
+  - [Purpose of the link/data link layer](#purpose-of-the-link-or-data-link-layer)
+  - [Ethernet protocol](#ethernet-protocol)
+    - [Ethernet Frames](#ethernet-frames)
+      - [Interframe Gap](#interframe-gap)
+      - [Difference between ethernet standards](#difference-between-ethernet-standards)
+      - [MAC Addresses](#mac-addresses)
+  - [A Problem of Scale](#a-problem-of-scale)
+- [The Internet/Network Layer](#the-internet-or-network-layer)
+  - [Purpose of the Internet/Network Layer](#purpose-of-the-internet-or-network-layer)
+  - [Data Packets](#data-packets)
+  - [IP Addresses IPv4](#ip-addresses-ipv4)
+    - [Network Address & Broadcast Address](#network-address-and-broadcast-address)
+  - [Routing and Routing Tables](#routing-and-routing-tables)
+  - [IPv6](#ipv6)
+  - [Networked Applications](#networked-applications)
+- [Concepts](#concepts)
+- [Overview](#overview)
 
 ---
+
+## What is the Internet
 
 - We, as software developers, must understand how _network communication_ functions because that is at the foundation of how _network applications_ function.
 - _The internet_ is a network of networks comprised of a physical infrastructure(switches, routers, cables, servers, etc.) that connects devices all across the world, and the protocols that allow these devices to communicate/share data with one another.
 - The _Internet Protocol(IP)_ is a key part of the functionality odf the internet.
 
-## What is the Internet
-
 ### Network
 
 - In its simplest form a network is two or more devices connected in a way that allows them to communicate/share data with one another. (e.g. two computers connected using a LAN cable and configuring network settings in a way that they form a network.)
 
-### LAN/WLAN
+### LAN and WLAN
 
 - A _Local Area Network(LAN)_ is most common computer environments(e.g. at an office, or at school). Is comprised of two or more computers or other devices connected by a bridging device(i.e. hub or switch) with network cables.
 - A _Wireless Local Area Network(WLAN)_ is the same as above but connected using a wireless hub or switch rather than plugged in with a cable.
@@ -33,11 +74,11 @@
 
 ## Protocols
 
-### What is a Protocol?
+### What is a Protocol
 
 > A **protocol** is a well-known set of rules and standards used to communicate between machines.
 
-### Why do we need Protocols?
+### Why do we need Protocols
 
 - The variety of electronic communication that needs to communicate these days is astounding:
   - Devices (phone brands, phone models, tvs, computers, toasters, etc.)
@@ -145,9 +186,9 @@ The difference between these models is mostly in their approach, but they are ro
 
 ---
 
-## The Link/Data Link Layer
+## The Link or Data Link Layer
 
-### Purpose of the link/data link layer
+### Purpose of the link or data link layer
 
 - Protocols at the Link/Data link layer are primarily concerned with the identification of devices on the physical network and moving data over the physical network between devices that comprise it(like computers, switches, routers, etc.).
 - Its the interface between the physical network and the more logical layers above.
@@ -203,9 +244,9 @@ A switch will use the destination address to send the frame _only_ to the intend
 
 ---
 
-## The Internet/Network Layer
+## The Internet or Network Layer
 
-### Purpose of the Internet/Network Layer
+### Purpose of the Internet or Network Layer
 
 - Primary function of the Internet/Network layer is to facilitate communication between hosts(computers, ect.) on different networks.
 - The **Internet Protocol**(IP) is the predominant protocol for this layer and there are two versions in use: IPv4 and IPv6.
@@ -234,7 +275,7 @@ A switch will use the destination address to send the frame _only_ to the intend
 - The range is set by a network hierarchy, where an overall network is split into logical sub-networks, each being defined by the range of IP addresses available to it.
 - IPv4 addresses are 32 bits in length and are divided into four sections of eight bits each, each converted to a range of numbers from `0-255`. For instance, `110.54.203.175`.
 
-#### Network Address & Broadcast Address
+#### Network Address and Broadcast Address
 
 - Each network defines the IP at the start of its network range as the _Network Address_ and the end of its range as the _Broadcast Network_.
 - When a router is looking for an IP address it uses the Network Address of a specific network to identify the segment of IP addresses within the network. This means if the router needs to send a packet to any address within that range it only needs to keep a record of the router that is associated with that range of addresses.
