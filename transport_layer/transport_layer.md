@@ -6,6 +6,8 @@
     - [Netstat](#netstat)
   - [Sockets](#sockets)
     - [Sockets and Connections](#sockets-and-connections)
+      - [Connectionless](#connectionless)
+      - [Connection-Oriented](#connection-oriented)
 - [Network Reliability](#network-reliability)
   - [Building a Reliable Protocol](#building-a-reliable-protocol)
   - [Pipelining for Performance](#pipelining-for-performance)
@@ -61,13 +63,33 @@ The Transport Layer provides:
 - **Source Port**: Services running on a client machine will have an _ephemeral_ or temporary port number assigned to it by the OS.
 - **Destination Port**: Application processes will be assigned a this port number according to the specific process.
 - Both of these port numbers will be included in the header of the DPU utilized at the Transport Layer.
-- **Socket**: The port number and IP address together make up a _communication end-point_, referred to as a **_socket_**.
 
 ### Sockets
 
+- **Socket**: The port number and IP address together make up a _communication end-point_, referred to as a **_socket_**.
+  - The IP address connects us with the correct device or host.
+  - The Port connects us with the correct application on the host.
+- This is ket to creating end-to-end communication between devices/hosts.
 
+> At a _conceptual level_ a socket is a communication end-point defined by an address-port pair(e.g facilitates multiplexing).
+
+> In socket _programming terms_, the concept of implementing this concept involves instantiating a socket object to implement a TCP or UDP connection.
 
 #### Sockets and Connections
+
+Having a conversation with 5 people at once would be easier if we could duplicate ourselves so that we had an instance of ourselves to have a one-on-one conversation with each of the 5 individuals. Otherwise trying to keep up the conversation could be difficult and prone to poor unreliable communication.
+
+This is a rough analogy for the differences between _connectionless_ and _connection-oriented_ network communication.
+
+##### Connectionless
+
+A connectionless system would instantiate a socket object defined by the destination port and IP address that would listen for messages coming to it by invoking a `listen()` method. Messages could come from any source, but the connectionless system is only listening for messages that match the destination IP address/port pair.
+
+##### Connection-Oriented
+
+Like the connectionless system, a socket object is defined by the destination ip address/port pair, and the `listen()` method is invoked and listens for incoming messages. But here's where things are different, when a message is received a new socket object is created that listens for messages that match the destination IP address/port pair, **and** match the source IP address/port pair.
+
+Any messages received that do not match the source and destination IP address/port pair will have a new socket object created for a new connection.
 
 ---
 
