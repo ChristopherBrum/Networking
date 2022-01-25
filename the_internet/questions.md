@@ -1,4 +1,4 @@
-# Questions
+# Questions about the Internet
 
 - Intro
   - What is do we mean by network infrastructure?

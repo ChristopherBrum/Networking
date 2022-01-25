@@ -1,0 +1,34 @@
+# Questions about the Transport Layer
+
+- Communication Between Processes
+  - What is the difference between how devices communicate and applications communicate via the internet?
+  - What is multiplexing and demultiplexing?
+  - What is a port and what does it do?
+  - What do we mean when we say a _server is listening_?
+  - What information does a PDU within the transport layer include, regardless of the Transport Protocol used?
+  - What two things allow end-to-end communication between applications on different machines?
+  - What is a socket?
+  - How can we relate a _communication end point_ to the postal service and an apartment building?
+  - What do we mean by endpoint?
+  - At the implementation level what can a _socket_ be referring to?
+  - How does a connectionless system and a connection oriented system differ?
+- Network Reliability
+  - What about the early layers of our network model makes them unreliable?
+  - What processes do we have in levels lower than the Transport layer to identify data thats been corrupted within the Internet or Ethernet protocol layers?
+  - What does reliability mean in terms of the transport layer?
+  -
+- Transportation Control Protocol(TCP)
+  - What is a key principal of TCP?
+  - What abstraction does TCP provide?
+  - What are the four main complexities of reliable network communication at the Application level that TCP attempts to solve/hide?
+  - What is the PDU used with the TCP protocol?
+  - What does TCP use to make an application data connection?
+  - What is flow control in terms of the TCP protocol?
+  - What does congestion avoidance do?
+  - What is HOL blocking?
+- User Datagram Protocol(UDP)
+  - What's a major difference of UDP and TCP?
+  - Whats the PDU for the UDP protocol?
+  - What _doesn't_ UDP do when compared to TCP?
+  - What's positives does UDP have if less reliable than TCP?
+
