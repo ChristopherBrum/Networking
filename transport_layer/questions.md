@@ -16,8 +16,10 @@
   - What about the early layers of our network model makes them unreliable?
   - What processes do we have in levels lower than the Transport layer to identify data thats been corrupted within the Internet or Ethernet protocol layers?
   - What does reliability mean in terms of the transport layer?
-  -
 - Transportation Control Protocol(TCP)
+  - What do we mean when we say TCP is a connection-oriented protocol?
+  - What does TCP use to establish a connection?
+  - What are the key things that TCP uses to ensure a reliable connection?
   - What is a key principal of TCP?
   - What abstraction does TCP provide?
   - What are the four main complexities of reliable network communication at the Application level that TCP attempts to solve/hide?
@@ -26,9 +28,9 @@
   - What is flow control in terms of the TCP protocol?
   - What does congestion avoidance do?
   - What is HOL blocking?
+  - What are the downsides to TCP?
 - User Datagram Protocol(UDP)
   - What's a major difference of UDP and TCP?
   - Whats the PDU for the UDP protocol?
   - What _doesn't_ UDP do when compared to TCP?
-  - What's positives does UDP have if less reliable than TCP?
-
+  - What's positives does UDP have over TCP?
