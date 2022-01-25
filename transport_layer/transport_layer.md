@@ -77,19 +77,17 @@ The Transport Layer provides:
 
 #### Sockets and Connections
 
-Having a conversation with 5 people at once would be easier if we could duplicate ourselves so that we had an instance of ourselves to have a one-on-one conversation with each of the 5 individuals. Otherwise trying to keep up the conversation could be difficult and prone to poor unreliable communication.
-
-This is a rough analogy for the differences between _connectionless_ and _connection-oriented_ network communication.
+- Having a conversation with 5 people at once would be easier if we could duplicate ourselves so that we had an instance of ourselves to have a one-on-one conversation with each of the 5 individuals. Otherwise trying to keep up the conversation could be difficult and prone to poor unreliable communication.
+- This is a rough analogy for the differences between _connectionless_ and _connection-oriented_ network communication.
 
 ##### Connectionless
 
-A connectionless system would instantiate a socket object defined by the destination port and IP address that would listen for messages coming to it by invoking a `listen()` method. Messages could come from any source, but the connectionless system is only listening for messages that match the destination IP address/port pair.
+- A connectionless system would instantiate a socket object defined by the destination port and IP address that would listen for messages coming to it by invoking a `listen()` method. Messages could come from any source, but the connectionless system is only listening for messages that match the destination IP address/port pair.
 
 ##### Connection-Oriented
 
-Like the connectionless system, a socket object is defined by the destination ip address/port pair, and the `listen()` method is invoked and listens for incoming messages. But here's where things are different, when a message is received a new socket object is created that listens for messages that match the destination IP address/port pair, **and** match the source IP address/port pair.
-
-Any messages received that do not match the source and destination IP address/port pair will have a new socket object created for a new connection.
+- Like the connectionless system, a socket object is defined by the destination ip address/port pair, and the `listen()` method is invoked and listens for incoming messages. But here's where things are different, when a message is received a new socket object is created that listens for messages that match the destination IP address/port pair, **and** match the source IP address/port pair.
+- Any messages received that do not match the source and destination IP address/port pair will have a new socket object created for a new connection.
 
 ---
 
