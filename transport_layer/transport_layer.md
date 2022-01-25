@@ -59,7 +59,7 @@ The Transport Layer provides:
   - 49152-65535 --> **dynamic ports**
 
 - **Source Port**: Services running on a client machine will have an _ephemeral_ or temporary port number assigned to it by the OS.
-- **Destination Port**: Application processes will be assigned according to the specific process.
+- **Destination Port**: Application processes will be assigned a this port number according to the specific process.
 - Both of these port numbers will be included in the header of the DPU utilized at the Transport Layer.
 - **Socket**: The port number and IP address together make up a _communication end-point_, referred to as a **_socket_**.
 
