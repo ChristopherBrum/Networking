@@ -15,6 +15,7 @@
   - [TCP Segments](#tcp-segments)
   - [TCP Connections](#tcp-connections)
   - [Flow Control](#flow-control)
+  - [Congestion Avoidance](#congestion-avoidance)
   - [Disadvantages of TCP](#disadvantages-of-tcp)
 - [User Datagram Protocol(UDP)](#user-datagram-protocol)
   - [Use cases for UDP](#use-cases-for-udp)
