@@ -160,79 +160,79 @@
 
 ---
 
-**_The Internet_**
+- What is multiplexing/demultiplexing?
+  - Multiplexing is the ability to transmit multiple signals over a single channel, and demultiplexing is the reverse.
 
-- What is a network?
-  - In its simplest form a network is two computers connected together with a cable and configured in a way so they can communicate with one another.
+- What enables multiplexing at the Transport layer?
+  - Ports allow multiplexing at the Transport layer in that there can be multiple ports connected through a single IP address(e.g. a single server IP Address can create connections with via different Port numbers)
 
-- What is the internet?
-  - The internet is the infrastructure that enables inter-network communication. It consists of a physical infrastructure that allows binary data to travel between devices, and the protocols that allows that infrastructure to function.
+- What is a network socket?
+  - A network socket is a combination of an IP Address and a Port number.
 
-- What are the two main components that comprise the internet?
-  - The internet is comprised of the physical network(cables, devices, routers, switches, etc.) and the protocols that enable the data to be shared across that infrastructure.
+- How do sockets differ at the conceptual and implementation level?
+  - On a conceptual level sockets facilitate multiplexing and on a practical level instantiating a socket object can implement a TCP or UDP connection.
 
-- What is a protocol?
-  - A system of rules.
+- Is the underlying network reliable?
+  - Nope, its inherently unreliable.
 
-- What is a network protocol?
-  - Network protocols are systems of rules governing the exchange or transmission of data over a network.
+- How do we achieve seemingly reliable data transport over the network?
+  - In order to achieve reliable data transport we need a system of rules(i.e. protocols) in place to enable it.
 
+- What is a connection-oriented system?
+  - In a connection-oriented system a _new socket object_ is instantiated that establishes a dedicated channel between processes running on separate devices.
+  - This socket will only listen for messages coming from the source socket(IP address/Port pair) and sent to the destination socket(IP address/port pair).
 
+- What is a four-tuple in terms of network connections?
+  - A _four tuple_ is the source IP address and port number, and the destination IP address and port number used when establishing a connection-oriented system at the Transport Layer.
 
+- What is a connectionless system?
+  - In a connectionless system relies on a single socket for all communication, it does not establishing a dedicated line of communication, and responds to all communications individually as they arrive.
 
-- What protocols are utilized at different layers of network communication and what are they responsible for?
+- What are the pros of a connection-oriented system?
+  - _Reliability_: A connection-oriented system is useful for establishing specific rules regarding communications(i.e. message acknowledgement and in-order delivery in TCP)
 
-- How is encapsulation utilized within the layered system of network protocols?
+- What are the pros of a connectionless system?
+  - _Efficiency_: there is low latency overhead due to not needing to establish a dedicated line of communication nor waiting for acknowledgements from the receiver.
+  - _Flexibility_: much simpler than a connection-oriented system and leaves room for some reliability elements to be incorporated if desired.
 
+- What is pipelining?
+  - Sending multiple messages at once without waiting for acknowledgements. As the acknowledgement messages are received additional messages can then be sent out. This helps mitigate the latency issues of waiting for acknowledgement messages of messages sent one at a time.
 
+- What is Network Reliability?
+  - Network reliability ensures a dedicated line of communication is established between two processes which enables four key services;
+    1. In-order delivery
+    2. Error handling (by way of checksums)
+    3. Retransmitting lost data
+    4. Handling duplicate data
 
+- What is the Three-way-handshake?
+  - The Three-way-handshake is the process that TCP utilizes to establish a dedicated and reliable line of communication between processes.
+    - Sender sends a `SYN` segment to make receiver aware of incoming data.
+    - Upon receiving the `SYN` segment, receiver sends back a `SYN ACK` segment ensuring it received the `SYN` segment and to ensure its responses are being received.
+    - Upon receiving the `SYN ACk` acknowledgement, sender sends a `ACK` segment confirming its receiving messages from the receiver, and the connection can be established.
+    - This ensures reliable connection between devices and synchronizes sequencing numbers used during this connection process.
 
-- What is the mechanism in which encapsulation is implemented within the layered system of network protocols?
-  - Encapsulation is implemented through the use of Protocol Data Units(PDUs), where the PDU of one layer becomes the data payload of the PDU for the layer beneath it.
+- What are the upsides to using TCP?
+  - TCPs reliability is a key aspect of its popularity. The connection process(three-way-handshake) enables in-order deliver, handles data loss, handles data duplication, and allows for flow control and congestion avoidance.
 
-- What is the Physical Network and what is it responsible for?
-  - The Physical Network is the tangible real-world infrastructure that binary data travels through, by way of electrical signals, light, and radio waves.
+- What is flow control?
+  - A service of TCP that helps ensure data is transmitted as efficiently as possible by preventing the sender from overwhelming the receiver with too much data at once. Uses the data passed back from the receiver in the window field of the segment header to adjust the amount of data it sends in the next segment.
 
-- What is Latency?
-  - Latency is the measure of time. It is the amount of time that a piece of data takes to travel from one point to another.
+- What is congestion avoidance?
+  - A service of TCP that helps to prevent network congestion and mitigate latency overhead by using the number of retransmissions of data are occurring as a feedback mechanism to determine how congested the network is. More data loss/retransmissions of data will indicate theres more data on the network that it has capacity to transmit and will reduce the size of the transmissions being sent.
 
-- What is Bandwidth?
-  - Bandwidth is a measure of capacity. It is the amount of data that can travel from one point to another within a set amount of time.
+- What are the main downsides to using TCP?
+  - TCP provides reliability at the cost of speed.
+  - Head-of-line delays can occur because of its in-order delivery mechanism, which can cause delays when retransmissions of segments can "hold up" other segments behind it in the buffer.
 
-- What is Ethernet Protocol responsible for?
-  - The Ethernet Protocol is responsible for the physical point-to-point communication between devices(NICs and switches specifically).
+- What are the upsides to using UDP?
+  - _Speed_: there is low latency overhead due to not needing to establish a dedicated line of communication as is in TCP nor waits for acknowledgements from the receiver.
+  - _Flexibility_: much simpler than a connection-oriented system and leaves room for some reliability elements to be incorporated if desired.
 
-- What is the PDU used with Ethernet Protocol?
-  - A frame is the PDU utilized with Ethernet Protocol.
+- What are the downsides to using UDP?
+  - Inherently unreliable.
+  - No guarantee of message delivery, delivery order, congestion avoidance, flow control, or state tracking.
 
-- Within the Ethernet protocol what is used to identify where data will travel from hop-to-hop on its journey between hosts?
-  - The Ethernet protocol uses MAC addresses to identify source and destination of devices along its path between hosts.
-
-- What is Internet Protocol(IP) responsible for?
-  - Internet protocol is responsible for logical inter-network communication.
-
-- What are the two versions of IP, and why do we need more than one?
-  - Currently we have IPv4 and IPv6. The need for IPv6 is because IP utilizes IP addresses to identify devices connected to the network and only allows for ~4.3 billion addresses. We will exceed that number in the near future, and IPv6 allows for substantially more.
-
-- What does IP use to identify devices connected to the network?
-  - IP uses IP Addresses to direct data between networked devices.
-  
-- What PDU is used with Internet Protocol?
-  - A packet is the PDU utilized with Internet Protocol.
-
----
-
-Transport layer
-
-TCP provides reliability through message acknowledgement and retransmission, and in-order delivery.
-
-TCP also provides Flow Control and Congestion Avoidance
-
-The main downsides of TCP are the latency overhead of establishing a connection, and the potential Head-of-line blocking as a result of in-order delivery.
-
-UDP is a very simple protocol compared to TCP. It provides multiplexing, but no reliability, no in-order delivery, and no congestion or flow control.
-
-UDP is connectionless, and so doesn't need to establish a connection before it starts sending data
-
-Although it is unreliable, the advantage of UDP is speed and flexibility.
-
+- What characteristics do TCP and UDP share?
+  - Both use checksums for error handling.
+  - Both utilize port numbers in the Header of their PDUs.

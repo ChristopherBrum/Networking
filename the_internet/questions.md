@@ -58,3 +58,62 @@
   - What is routing and why its necessary?
   - Why do we need IPv6?
 
+---
+
+- What is a network?
+  - In its simplest form a network is two computers connected together with a cable and configured in a way so they can communicate with one another.
+
+- What is the internet?
+  - The internet is the infrastructure that enables inter-network communication. It consists of a physical infrastructure that allows binary data to travel between devices, and the protocols that allows that infrastructure to function.
+
+- What are the two main components that comprise the internet?
+  - The internet is comprised of the physical network(cables, devices, routers, switches, etc.) and the protocols that enable the data to be shared across that infrastructure.
+
+- What is a protocol?
+  - A system of rules.
+
+- What is a network protocol?
+  - Network protocols are systems of rules governing the exchange or transmission of data over a network.
+
+
+
+
+- What protocols are utilized at different layers of network communication and what are they responsible for?
+
+- How is encapsulation utilized within the layered system of network protocols?
+
+
+
+
+- What is the mechanism in which encapsulation is implemented within the layered system of network protocols?
+  - Encapsulation is implemented through the use of Protocol Data Units(PDUs), where the PDU of one layer becomes the data payload of the PDU for the layer beneath it.
+
+- What is the Physical Network and what is it responsible for?
+  - The Physical Network is the tangible real-world infrastructure that binary data travels through, by way of electrical signals, light, and radio waves.
+
+- What is Latency?
+  - Latency is the measure of time. It is the amount of time that a piece of data takes to travel from one point to another.
+
+- What is Bandwidth?
+  - Bandwidth is a measure of capacity. It is the amount of data that can travel from one point to another within a set amount of time.
+
+- What is Ethernet Protocol responsible for?
+  - The Ethernet Protocol is responsible for the physical point-to-point communication between devices(NICs and switches specifically).
+
+- What is the PDU used with Ethernet Protocol?
+  - A frame is the PDU utilized with Ethernet Protocol.
+
+- Within the Ethernet protocol what is used to identify where data will travel from hop-to-hop on its journey between hosts?
+  - The Ethernet protocol uses MAC addresses to identify source and destination of devices along its path between hosts.
+
+- What is Internet Protocol(IP) responsible for?
+  - Internet protocol is responsible for logical inter-network communication.
+
+- What are the two versions of IP, and why do we need more than one?
+  - Currently we have IPv4 and IPv6. The need for IPv6 is because IP utilizes IP addresses to identify devices connected to the network and only allows for ~4.3 billion addresses. We will exceed that number in the near future, and IPv6 allows for substantially more.
+
+- What does IP use to identify devices connected to the network?
+  - IP uses IP Addresses to direct data between networked devices.
+  
+- What PDU is used with Internet Protocol?
+  - A packet is the PDU utilized with Internet Protocol.
