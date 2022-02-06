@@ -206,7 +206,7 @@ Because query strings are passed in through the URL they are only used in **HTTP
   2. Using the character may be misinterpreted or possibly modified by some systems. `%` can't be used for encoding other characters, so is unsafe.
   3. The character is reserved for a special use with URLs.(e.g. `/`, `:`, `&`, `@`)
 
---
+---
 
 ## HTTP
 
