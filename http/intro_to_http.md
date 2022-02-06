@@ -18,7 +18,12 @@
       - [Query Strings/Parameters](#quesry-strings-and-parameters)
       - [URL Encoding](#url-encoding)
   - [HTTP](#http)  
-    - []
+    - [Making Requests](#making-requests)
+    - [Request Methods](#request-methods)
+    - [GET Requests](#get-requests)
+    - [POST Requests](#post-requests)
+    - [HTTP Header](#http-headers)
+  - [Processing Responses](#processing-responses)
 
 ---
 
@@ -204,3 +209,100 @@ Because query strings are passed in through the URL they are only used in **HTTP
 --
 
 ## HTTP
+
+### Making Requests
+
+When using a web browser, the URL is typed in the address bar.
+
+- This URL is used to:
+  - identify the protocol to be used for a request by using the **scheme**.
+  - determine the IP Address to send the request to by using the **host**.
+  - determine the appropriate port number based on the protocol being used.
+  - and optionally:
+    - locate a specific resource on the host by way of the **path**.
+    - add additional parameters to the request by way of query params.
+
+The web browser will package this request and send it to the appropriate web server that issues an appropriate response back, which the browser then processes into a webpage.
+
+- The resource requested by entering our URL into the address bar returns some Hypertext Markup Language(HTML) which is what the browser uses to display the desired webpage.
+- Within the HTML body are references to many other resources such as css stylesheets, javascript files, images, videos, etc.
+- The browser knows these resources will need to be fetched as well in order for the webpage to look and function appropriately so it automatically makes requests for each of these additional resources.
+
+#### Request Methods
+
+- **HTTP Request Method**: this command tells the server the action to be performed on a resource.
+- For every request sent to the server a _status code_ is sent back with the response. (e.g. 200, 301, 404)
+
+| HTTP Method | CRUD Operation | Description | Possible Status COde Response(not complete) |
+|---|---|---|---|
+| GET |  Read | The HTTP GET method is used to read (or retrieve) a representation of a resource. | 200 (OK), single entity. 404 (Not Found), if ID not found or invalid. |
+| POST | Create | The POST method is most often utilized to create new resources. | not applicable |
+| PATCH | Update | PATCH is used to modify resources. | 200 (OK) or 204 (No Content). 404 (Not Found), if ID not found or invalid. |
+| DELETE | Delete | DELETE is used to delete a resource identified by filters or ID. | 204 (No Content). 404 (Not Found), if ID not found or invalid. |
+| PUT | Update/Replace | PUT is used to update or replace a resource. | not implemented |
+
+#### GET Requests
+
+- `GET` will be the two most common method, and is used when wanting to retrieve information.
+- A _GET_ request can be initiated by typing a URL into the address bar, by clicking a link on a webpage, or ny a number of other ways.
+- GET requests are used to retrieve a resource, and most links are GETs.
+- The response from a GET request can be anything, but if it's HTML and that HTML references other resources, your browser will automatically request those referenced resources. A pure HTTP tool will not.
+
+#### POST Requests
+
+- POST is used when you want to initiate some sort of action on the server or send data to the server.
+- POST requests are often used when submitting a form.
+- They allow you to send much more data than through query strings.
+- They allow you to send data privately, not exposed in the URL like query strings are.
+
+> The **body** contains the data with which we want transmitted to the server in a HTTP message, and is optional.
+
+- The body can be empty when sending a request. Think of it like the letter placed inside an envelope thats being mailed. It doesn't need to contain anything for the letter to be delivered.
+- When you fill out a form and submit it you're making a POST request, the browser, HTTP tool or curl is submitting the data entered into the body of the HTML document, and then redirecting to a new page.
+- Where you are redirected to is determined by the `Location` header in the POST response and uses a GET request to navigate to that resource.
+
+#### HTTP Headers
+
+- HTTP headers send additional information along with a request/response cycle.
+- They are colon separated name/value pairs.
+
+**Request Headers** provide more info about the client and the resource being fetched.
+
+| Field Name | Description | Example |
+|---|---|---|
+| Host | Domain name of the server | Host: www.google.com |
+| Accept-Language | Acceptable languages | Accept-Language: en-US,en;q=0.8 |
+| User-Agent | String that identifies the client | User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.101 Safari/537.36 |
+| Connection | Type of connection the client prefers | Connection: keep-alive |
+
+---
+
+## Processing Responses
+
+### Status Code
+
+- The **Status Code** is a 3 digit number sent back by the server after receiving a request and signals the status of the request.
+- There may be `status text` accompanying the `status code` that will give a brief description of the code.
+- This can be found under the **Status** column within the Inspector.
+
+Here are the most common status codes:
+
+| Status Code | Status Text | Meaning |
+|---|---|---|
+| 200 | OK | Request was handled successfully |
+| 302 | Found | Requested resource has changed temporarily/usually a redirect |
+| 404 | Not Found | Requested resource cannot be found |
+| 500 | Internal Server Error | Server encountered generic error |
+
+### Status Headers
+
+- **Status Headers** give us more information about the resource being sent back from a request.
+
+Here are a few of the response headers to be aware of:
+
+| Header Name | Description | Example |
+|---|---|---|
+| Content-Encoding | Type of encoding used on the data | Content-Encoding: gzip |
+| Server | Name of the server | Server:thin 1.5.0 codename Knife |
+| Location | Notifies client of new resource location | Location: https://www.github.com/login |
+| Content-Type | Type of data the response contains | Content-Type:text/html; charset=UTF-8 |
