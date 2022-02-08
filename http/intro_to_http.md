@@ -24,6 +24,8 @@
     - [POST Requests](#post-requests)
     - [HTTP Header](#http-headers)
   - [Processing Responses](#processing-responses)
+    - [Status Codes](#status-codes)
+    - [Status Headers](#status-headers)
 
 ---
 
@@ -212,6 +214,15 @@ Because query strings are passed in through the URL they are only used in **HTTP
 
 ### Making Requests
 
+The most important components to understand about an HTTP request are:
+
+- HTTP method
+- path
+- headers
+- message body (for POST requests)
+
+---
+
 When using a web browser, the URL is typed in the address bar.
 
 - This URL is used to:
@@ -279,6 +290,12 @@ The web browser will package this request and send it to the appropriate web ser
 
 ## Processing Responses
 
+The most important parts of an HTTP response are:
+
+- status code
+- headers
+- message body, which contains the raw response data
+
 ### Status Code
 
 - The **Status Code** is a 3 digit number sent back by the server after receiving a request and signals the status of the request.
@@ -306,3 +323,39 @@ Here are a few of the response headers to be aware of:
 | Server | Name of the server | Server:thin 1.5.0 codename Knife |
 | Location | Notifies client of new resource location | Location: https://www.github.com/login |
 | Content-Type | Type of data the response contains | Content-Type:text/html; charset=UTF-8 |
+
+---
+
+## Stateful Web Applications
+
+- HTTP is a _stateless_ protocol, meaning the server does not hold on to data between request/response cycles.
+  - Each request is seen as a brand new entity, and different request are not aware of each other.
+
+> Web developers utilize a few key things to simulate a _stateful_ experience for users:
+> - sessions
+> - cookies
+> - AJAX
+
+### A Stateful App
+
+When you login to a website it should display your username somewhere to verify that you are indeed logged in. When you click on a link within the resource the website should take you to that specific page but still shows that you're logged in. If HTTP is a stateless protocol and each request/response is independent and does not contain data from previous request/response cycles, how does the website know that you're still logged in when it takes to a different page?
+
+### Sessions
+
+- **Session Identifier**: is a token sent by the server back to the client with its response. This token will be appended to each subsequent request sent by the client so that the server can identify the client, and therefore display information specific to the client.
+- The passing back and forth of this `session id` allows the client and server to impersonate a state of '_persistent connection_' between client and server, even though each response/request is stateless and unaware of any previous requests/responses.
+- This faux statefulness has some consequences:
+  1. Every request is inspected for a `session id` by the server.
+  2. If the request contains a `session id` it must be inspected to ensure it is still valid.
+      - The server needs rules for handling session expiration.
+      - The server needs to decide how to store session data.
+  3. The server needs to find the session data based on the `session id`.
+  4. The server needs to recreate the session data(HTML in the case of a web request) and send it back to the client as part of its response.
+
+An example:
+
+If you login to your facebook page a request is sent to the server that calculates a likes on a photos, generates a list of your friends and their recent posts, generates a list of people you might know, etc. This is a massively expensive webpage to parse in terms of rendering HTML to send to the browser. And because each request/response is stateless every time you click the 'like' button the server needs to render all of this all over again. On and on, for every interaction with Facebook in the browser.
+
+Thankfully we have ways of storing session information, and one common way is by the use of _session cookies_.
+
+### Cookies
