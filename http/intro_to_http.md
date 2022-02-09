@@ -359,3 +359,41 @@ If you login to your facebook page a request is sent to the server that calculat
 Thankfully we have ways of storing session information, and one common way is by the use of _session cookies_.
 
 ### Cookies
+
+- **Cookie** or **HTTP Cookie**: is a piece of data stored in the client and sent by the server during a request/response cycle that contain session information.
+- Most browsers have cookies enabled by default.
+- The browser stores the cookies.
+- The actual session data is stored on the server.
+- When you first access a webpage the server sends session info and sets it in your _browser cookie_ on your local computer.
+- On subsequent request/response cycles with the webpage the client-side cookie is compared with the server-side session data to confirm the current session.
+- This is how on future visits to the webpage you will be recognized because of the stored cookie and its associated information.
+- The session id is unique and will expire after a certain amount of time.
+
+How it works:
+
+- When you first visit a website in the request headers there is no mention of **cookies**
+- When looking at the response header you will find the header **set-cookie** which sets some cookie data in the browser on your local computer.
+- Then when making another request to the same webpage the request header will now have a **cookie** header set containing the cookie data sent by the previous response.
+- This piece of data will be sent with each request made to the same webpage to help the server identify your browser.
+- The browser on your computer stores the cookie which means you can shut your restart your computer the cookie info would still exist.
+
+> When logging into a website a new **session id** is created and saved in a **cookie** on your browser, which is attached to every new request sent to that webpage that allows the server to identify this client. When the server gets a request containing a session id it finds the data associated with that id, and this is where it "remembers" the state for that session id(client).
+
+- The session data is stored somewhere on the _server_.
+- The session id is served on the _client_.
+- The session id acts as the "key" that can access the session data.
+
+## AJAX
+
+- **AJAX** or **Asynchronous Javascript and XML**: main feature is that it allows browsers to issue requests _without a full page refresh_.
+- All AJAX requests from the client are done _asynchronously_, meaning the page doesn't refresh.
+
+An example:
+
+- When navigating to google.com and opening the network inspector we can see that:
+  - each key-press into the search bar triggers an AJAX request.
+  - the responses of these requests are processed by a _callback_.
+    - A _callback_ is a piece of logic you can pass on to a function when a certain event has occurred, in this circumstance it is triggered when the response is returned.
+    - The callback processing the responses to the key-downs in the google search bar is updating the possible search result you are typing.
+  
+> An AJAX request is a normal request sent to the server will all the standard components of a HTTP request, the server handles the request like any other request, _the only difference being_ that instead of the browser processing the response it is handled by a _callback_, which is usually some client-side JS code.
