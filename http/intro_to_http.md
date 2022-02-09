@@ -26,6 +26,21 @@
   - [Processing Responses](#processing-responses)
     - [Status Codes](#status-codes)
     - [Status Headers](#status-headers)
+  - [Stateful Web Applications](#stateful-web-applications)
+    - [A Stateful App](#a-stateful-app)
+    - [Sessions](#sessions)
+    - [Cookies](#cookies)
+    - [AJAX](#ajax)
+  - [Security](#security)
+    - [Secure HTTP (HTTPS)](#secure-http)
+    - [Same-origin Policy](#same-origin-policy)
+    - [Session Hijacking](#session-hijacking)
+      - [Countermeasures for Session Hijacking](#countermeasures-for-session-hijacking)
+    -[Cross-Site Scripting](#cross-site-scripting)
+      - [Potential Solutions for XSS](#potential-solutions-for-xss)
+  - [Some Background](#some-background)
+    - [Client Server](#client-server)
+    - [HTTP Over TCP/IP](#http-over-tcp/ip)
 
 ---
 
@@ -377,7 +392,9 @@ How it works:
 - This piece of data will be sent with each request made to the same webpage to help the server identify your browser.
 - The browser on your computer stores the cookie which means you can shut your restart your computer the cookie info would still exist.
 
-> When logging into a website a new **session id** is created and saved in a **cookie** on your browser, which is attached to every new request sent to that webpage that allows the server to identify this client. When the server gets a request containing a session id it finds the data associated with that id, and this is where it "remembers" the state for that session id(client).
+> When logging into a website a new **session id** is created and saved in a **cookie** on your browser, which is attached to every new request sent to that webpage that allows the server to identify this client. When the server gets a request containing a session id it finds the data associated with that id, and this is where it "remembers" the state for that session id(client). 
+
+> The session id is implemented as a random string and comes in the form of a cookie stored on the computer.
 
 - The session data is stored somewhere on the _server_.
 - The session id is served on the _client_.
@@ -397,3 +414,84 @@ An example:
     - The callback processing the responses to the key-downs in the google search bar is updating the possible search result you are typing.
   
 > An AJAX request is a normal request sent to the server will all the standard components of a HTTP request, the server handles the request like any other request, _the only difference being_ that instead of the browser processing the response it is handled by a _callback_, which is usually some client-side JS code.
+
+---
+
+## Security
+
+### Secure HTTP
+
+- **Packet Sniffing** is when an entity connected to the same network as two other devices that are sending requests/responses back and forth, purposely reads the messages.
+- Because session ids are sent with a request to identify the client, if that session id were intercepted it could theoretically be used to pose as the client, and be automatically logged into the clients account.
+- With **HTTPS** every request and response is encrypted prior to being sent over the network.
+- HTTPS send messages through a cryptographic protocol called Transport Layer Security(TLS) for encryption.
+  - Earlier versions used Secured Socket Layer(SSL) before TLS was created.
+- These cryptographic protocols use certificates to talk with remote servers and exchange security keys prior to data encryption.
+
+### Same-origin Policy
+
+- **Same-origin Policy** allows for unrestricted interaction between resources that originate from the same origin, while restricting certain interactions between resources that originate from different origins.
+  - Same-origin policy considers an _origin_ is the combo of a url's **scheme**, **host** and **port number**.
+  - For example, the url: `http://example.com/path1`
+    - _would_ have the same origin as `http://example.com/path2`
+    - but _wouldn't_ have the same origin as `https://example.com/path2` (different scheme)
+    - and _wouldn't_ have the same origin as `http://example.com:4000/path2` (different port)
+    - and _wouldn't_ have the same origin as `http://anothersite.com/path2` (different host).
+- Same-origin Policy doesn't restrict every cross-origin request:
+  - Linking, redirects, and form submissions are generally allowed.
+  - Embedded resources such as css stylesheets, scripts, images, and other media are allowed.
+  - What is typically _restricted_ are cross-origin requests accessed programmatically via APIs, `XMLHttpRequests` or `fetch`.
+- This can be an issue for developers trying to make legitimate cross-origin requests.
+  - **Cross-origin Resource Sharing(CORS)** was developed for just this purpose. It allows requests that normally aren't allowed cross-origin to occur by adding new HTTP headers that give permission for servers to serve resources cross-origin.
+
+> Same-origin Policy is important in guarding against _session hijacking attacks_.
+
+### Session Hijacking
+
+When a client sends a request to a server to login to their account the server responds by sending back a unique token that the client uses in subsequent requests to identify themselves to the server. This enables specific session data to be sent back to the client in order to mimic the experience of statefulness. The session id is generally implemented as a string of random characters and is stored in a cookie on the clinet computer. Every request sent to the sever from the client utilizes this session id to identify the client and adds any new data to the session data, stored on the server.
+
+If an attacker gets ahold of the session id, both the client and the attacker have access to the session and can both access the web application. Most times the client won't even be aware that an attacker has access to their session without needing their username or password.
+
+#### Countermeasures for Session Hijacking
+
+- **Resetting Sessions**
+  - With authorization systems when a new session is initiated all previous sessions are made invalid.
+  - Most websites implement this strategy when a user is entering sensitive information, and they are asked again to authenticate again prior to entering the info.
+
+- **Setting Expiration Time**
+  - Giving sessions an expiration time, for example 30 minutes, gives any potential attackers a much smaller window to commit nefarious actions within.
+  - Sessions that have no expiration time give attackers infinite time to pose as the user.
+
+- **HTTPS**
+  - By using HTTPS across the entire application minimizes the chances that an attacker can hijack a session id.
+
+### Cross-Site Scripting
+
+- **Cross-Site Scripting(XSS)** is a type of attack that occurs when you allow users to input HTML or JavaScript that ends up being displayed directly by the site(e.g. a comment section).
+- If the server code doesn't take any measures to sanitize the input, it will be injected into the contents of the page and the browser will interpret the HTML or JavaScript and execute it.
+- Attackers can inject very harmful HTML and JavaScript that can be destructive to the server and negative for future users of the webpage, too.
+  - e.g. the attacker can user JavaScript to grab the session id of all future users of the webpage and log onto the site as them.
+
+#### Potential Solutions for XSS
+
+- **Sanitize Input**
+  - Eliminate any problematic input such as `<script>` tags, or completely disallow HTML or JavaScript input for something safer like markdown.
+
+- **Escape User Input**
+  - Sometimes you'll need to allow HTML or JavaScript input but you can escape the input so you only render the characters instead of the actual HTML or JavaScript code.
+
+---
+
+## Some Background
+
+### Client Server
+
+- When referring to servers in the request/response cycle we don't acknowledge the complexity of a server, nor do we generally need to. But it is good to be aware of a few of a servers main distinctions. If we zoom in on a server we can categorize the main components as:
+  1. **Web Server**: the server that responds to requests for static assets(e.g. images, files, css, javascript) that don't require any processing.
+  2. **Application Server**: the server where application/business logic resides and where more complicated logic resides. Where your server side code lives.
+  3. **Data Store**: is where the application server will often need to consult a data store, like a rational database, to retrieve or create data. Can also be simple files, key/value stores, document stores, or any variation that can save data in some way that it can be retrieved and processed.
+
+### HTTP Over TCP/IP
+
+- HTTP operates at the Application layer and is mostly concerned with formatting the messages that are exchanged between applications.
+- TCP/IP are actually doing the bulk of the heavy lifting of ensuring the request/response cycles travels between your browser and the server.
