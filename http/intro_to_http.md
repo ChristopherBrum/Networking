@@ -41,6 +41,9 @@
   - [Some Background](#some-background)
     - [Client Server](#client-server)
     - [HTTP Over TCP/IP](#http-over-tcp/ip)
+  - [URLs](#urls)
+    - [Schemes and Protocols](#schemes-and-protocols)
+    - [URLs and Filepaths](#urls-and-filepaths)
 
 ---
 
@@ -495,3 +498,35 @@ If an attacker gets ahold of the session id, both the client and the attacker ha
 
 - HTTP operates at the Application layer and is mostly concerned with formatting the messages that are exchanged between applications.
 - TCP/IP are actually doing the bulk of the heavy lifting of ensuring the request/response cycles travels between your browser and the server.
+
+---
+
+## URLs
+
+- **URI**: is a "sequence of characters that identifies an abstract or physical resource"(generic identifier).
+- **URL**: is a subset of a URI that includes the network location of the resource
+- All URLs are URIs, but not all URIs are URLs.
+
+### Schemes and Protocols
+
+- Within a URL the http:// is often incorrectly referred to as the _protocol_, but it is actually the _scheme_.
+- There is a relationship between the scheme in that it signifies the _protocol family_ to be used in the request rather than the specific version of that protocol to be used(e.g HTTP/0.9, HTTP/1.0, HTTP/1.1, etc.)
+- Within the more generic context of a URI, a scheme name is "a specification for assigning identifiers within that scheme", and not related to a particular protocol.
+- Convention states that when referring to scheme names they shall be in lowercase `http`, whereas a protocol shall be referred to in uppercase `HTTP`.
+
+### URLs and Filepaths
+
+- Originally when Berners-Lee conceived of his idea for the web URLs were used much like Unix-style file paths to locate particular resources on the web. At this point the web was used to fetch static HTML files to display and the path portion of a URL represented a physical file location on a web server.
+  - For example, the URL `http://www.mywebsite.com/food/recipes/lasagne.html`
+  - ...could be used to fetch the `lasagna.html` file from...
+  - ...the `recipes` sub-directory, from...
+  - ...the `food` directory from...
+  - ...the server identified  by `www.mywebsite.com`.
+
+- Things evolved since those day and now most web resources are generated dynamically, utilizing...
+  - **Server-Side Frameworks**:
+    - Dynamic generation of code takes place on the server, where server-side frameworks/applications combine templates with stored data that produces HTML _pages_ that form the body of an HTTP response.
+
+  - **Client-Side Frameworks**:
+    - More recently, client-side frameworks have been utilized in a way where the HTTP response contains the raw data that's manipulated by an application running in the browser before being rendered.
+  - Regardless of the framework implementation how the path portion of the URL is determined by the application logic, and doesn't have anything to do with any underlying file structure on th server.
