@@ -70,6 +70,12 @@ The complexity of the TLS handshake can add additional round trips of latency on
 
 #### Cipher Suites
 
+- A _cipher_ is a cryptographic algorithm. A set of steps used for encrypting, decrypting, and related tasks.
+- A _cipher suite_ is a set of ciphers.
+- TLS uses different algorithms for different aspects of establishing and maintaining a secure connection.
+- The combined set of algorithms to be used form the Cipher Suite, and is agreed upon as part of the TLS handshake.
+- As part of the ClientHello message, the client sends a list of algorithms it supports for each required task, and the server chooses from these according to which algorithms it also supports.
+
 ---
 
 ### TLS Authentication

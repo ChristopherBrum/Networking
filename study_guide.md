@@ -1,7 +1,8 @@
 # Network Foundations Study Guide
 
 - [The Internet](#the-internet)
-  - [Have a broad understanding of what the internet is and how it works](#have-a-broad-understanding-of-what-the-internet-is-and-how-it-works)
+  - [What is the Internet?](#what-is-the-internet)
+  - [How does the internet work?](#how-does-thwe-internet-work)
   - [Understand the characteristics of the physical network, such as latency and bandwidth](#understand-the-characteristics-of-the-physical-network-such-as-latency-and-bandwidth)
   - [Have a basic understanding of how lower level protocols operate](#have-a-basic-understanding-of-how-lower-level-protocols-operate)
   - [Know what an IP address is and what a port number is](#know-what-an-ip-address-is-and-what-a-port-number-is)
@@ -29,17 +30,49 @@
 
 ## The Internet
 
-### Have a broad understanding of what the internet is and how it works
+### What is the Internet
+
+A _network_ is any 2 or more computers connected to each other and configured in a way that they can communicate,
+
+The _Internet_ is a vast 'network of networks', wherein local networks are connected together by way way of routers. The internet is comprised of both the physical infrastructure that enables inter-connectivity between hosts, and the logical protocols that defines how the transmission of data between hosts is facilitated.
+
+### How does the internet work
+
+The Internet is often easiest to conceive of when abstracted into a systems of layers, with the bottom most layer being the physical infrastructure that signals are transported across, and the logical layers on top of that being protocols that govern the transmission of data across the physical layer. At each of the logical layers a protocol is utilized to encapsulate data from the layer above it and perform a specific service in the process of networked communication.
+
+What is the web?
+
+What is a resource?
 
 ### Understand the characteristics of the physical network such as latency and bandwidth
 
+Latency
+
+Bandwidth
+
 ### Have a basic understanding of how lower level protocols operate
+
+What are lower level protocols responsible for?
+
+How do the lower level protocols work?
 
 ### Know what an IP address is and what a port number is
 
+What is an IP Address?
+
+What is an IP Addresses importance in the Internet?Network Layer?
+
 ### Have an understanding of how DNS works
 
+What is DNS?
+
+What does DNS do?
+
 ### Understand the client-server model of web interactions and the role of HTTP as a protocol within that model
+
+What is the client-server model?
+
+How does HTTP fit within the client-server model?
 
 ---
 
